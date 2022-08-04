@@ -14,6 +14,13 @@ export async function resolveSlug(
   }
 
   if (isVisit) {
+    if (data.expiresAt && data.expiresAt.getTime() < Date.now()) {
+      await prisma.shortLink.delete({
+        where: { slug: data.slug }
+      });
+      return undefined;
+    }
+
     await prisma.shortLink.update({
       data: {
         totalVisits: { increment: 1 }
