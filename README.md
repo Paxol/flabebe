@@ -1,3 +1,3 @@
-# Create T3 App
+# Flabébé
 
-This is an app bootstrapped according to the [init.tips](https://init.tips) stack, also known as the T3-Stack.
+A simple URL shortener with file upload to S3 compatible storage
