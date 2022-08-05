@@ -57,7 +57,6 @@ function CreateShortLink() {
 		setSubmitText(message);
 
 		const code = setTimeout(() => {
-			console.log('setTimeout')
 			setSubmitText("Create");
 		}, ERROR_MESSAGE_DURATION);
 
@@ -204,8 +203,15 @@ const Admin = () => {
 				Logout
 			</button>
 
-			<CreateShortLink />
-			<UploadFile />
+			{
+				data.user
+					? <>
+						<CreateShortLink />
+						<UploadFile />
+					</>
+					: <p className="mt-10 text-3xl text-center">You are not authorized</p>
+			}
+
 		</main>
 	}
 }

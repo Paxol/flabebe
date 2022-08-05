@@ -19,8 +19,6 @@ export async function createShortLink(input: { slug: string | null; url: string;
       },
     });
 
-    console.log("foundSlug?", foundSlug);
-
     if (foundSlug) {
       if (foundSlug.expiresAt && foundSlug.expiresAt.getTime() < Date.now()) {
         await prisma.shortLink.delete({

@@ -1,14 +1,11 @@
 import { NextFetchEvent, NextRequest, NextResponse } from "next/server";
 
 export async function middleware(req: NextRequest, ev: NextFetchEvent) {
-	console.log("middleware for", req.nextUrl.pathname);
-
 	if (
 		req.nextUrl.pathname.startsWith("/api/") ||
 		req.nextUrl.pathname.startsWith("/admin") ||
 		req.nextUrl.pathname.includes(".")
 	) {
-		console.log("Skipping middleware for", req.nextUrl.pathname);
 		return;
 	}
 
