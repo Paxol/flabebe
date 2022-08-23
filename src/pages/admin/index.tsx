@@ -123,7 +123,8 @@ function UploadFile() {
 	}, [downloadUrl]);
 
 	return (<section className="w-full max-w-md mt-16 flex flex-col justify-center p-6 duration-500 border-2 border-gray-500 rounded shadow-xl">
-		<h2 className="text-lg">Create new short link</h2>
+		<h2 className="text-lg">Upload a file</h2>
+		<p>Expires after 24h</p>
 
 		<div className="mt-6">
 			<Dropzone onDrop={async (files) => {
