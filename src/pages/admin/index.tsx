@@ -94,7 +94,7 @@ function CreateShortLink() {
 				<label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="slug">
 					Slug <span className="text-gray-500 font-normal">(leave empty to auto-generate)</span>
 				</label>
-				<input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="slug" type="slug" value={slug || ""} onChange={({ target: { value } }) => handleFormChange(setSlug, value)} />
+				<input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="slug" type="text" value={slug || ""} onChange={({ target: { value } }) => handleFormChange(setSlug, value)} />
 			</div>
 			<div>
 				<label className="inline-flex items-center">
