@@ -16,7 +16,7 @@ export const appRouter = createRouter()
   .merge("admin.slug.", adminSlugRouter)
   .merge("admin.files.", adminFileRouter)
   .merge("question.", protectedExampleRouter)
-  .merge("exernal.", externalRouter);
+  .merge("external.", externalRouter);
 
 // export type definition of API
 export type AppRouter = typeof appRouter;

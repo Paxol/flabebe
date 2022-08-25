@@ -56,7 +56,7 @@ function CreateAPIKey() {
 			setToken(data.token);
 			setCopyText("Copy");
 		}).catch(() => { });
-	}, [mutateAsync, identifier]);
+	}, [mutateAsync, identifier, tctx]);
 
 	const handleFormChange = useCallback((setter: (a: string) => void, value: string) => {
 		setSubmitText("Create");
@@ -212,7 +212,7 @@ function DeleteAPIKey() {
 			tctx.invalidateQueries("admin.api.get-api-key-identifiers");
 			setSubmitText("Deleted");
 		}).catch(() => { });
-	}, [mutateAsync, selectedIndex, identifiers]);
+	}, [mutateAsync, selectedIndex, identifiers, tctx]);
 
 	return (<section className="w-full max-w-md mt-16 flex flex-col justify-center p-6 duration-500 border-2 border-gray-500 rounded shadow-xl">
 		<h2 className="text-lg">Delete API key</h2>
