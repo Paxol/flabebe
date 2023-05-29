@@ -15,7 +15,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return;
   }
 
-  const data = JSON.parse(req.body);
+  const data = req.body;
 
   if (!("url" in data) || typeof data.url !== "string") {
     res.status(400).send("Missing url field");
