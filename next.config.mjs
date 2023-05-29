@@ -13,6 +13,7 @@ function defineNextConfig(config) {
 }
 
 export default defineNextConfig({
+  output: "standalone",
   reactStrictMode: true,
   swcMinify: true,
 });
