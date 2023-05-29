@@ -1,6 +1,6 @@
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
-import { createShortLink } from "../../utils/createShortLink";
+import { createShortLink } from "../actions/createShortLink";
 import { getUploadUrl } from "./admin/files";
 import { createRouter } from "./context";
 

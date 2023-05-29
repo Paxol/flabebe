@@ -1,5 +1,6 @@
 import type { PrismaClient } from "@prisma/client";
 import { TRPCError } from "@trpc/server";
+import { getUrl } from "./getUrl";
 
 export async function createShortLink(input: { slug: string | null; url: string; expiresAt: string | null; }, prisma: PrismaClient) {
   if (input.slug?.includes(".")) {
@@ -9,47 +10,32 @@ export async function createShortLink(input: { slug: string | null; url: string;
     });
   }
   
-  let slugToUse = input.slug ?? generateRandomSlug(5);
-  let existingSlug = false;
+  let slug = input.slug;
+  if (input.slug) {
+    const foundUrl = getUrl(input.slug, false);
+    const alreadyExists = foundUrl !== null;
 
-  do {
-    const foundSlug = await prisma.shortLink.findFirst({
-      where: {
-        slug: slugToUse,
-      },
-    });
-
-    if (foundSlug) {
-      if (foundSlug.expiresAt && foundSlug.expiresAt.getTime() < Date.now()) {
-        await prisma.shortLink.delete({
-          where: { slug: foundSlug.slug }
-        })
-        break;
-      }
-
-      if (input.slug) {
-        throw new TRPCError({
-          code: "BAD_REQUEST",
-          message: "Slug already exists",
-        });
-      } else {
-        slugToUse = generateRandomSlug(5);
-      }
+    if (alreadyExists) {
+      throw new TRPCError({
+        code: "BAD_REQUEST",
+        message: "Slug already exists",
+      });
     }
-  } while (existingSlug);
+  }
+
+  if (!slug)
+    slug = await generateSlug();
 
   try {
-    const slugCreated = await prisma.shortLink.create({
+    return await prisma.shortLink.create({
       data: {
-        slug: slugToUse,
+        slug,
         url: input.url,
         expiresAt: input.expiresAt,
       },
     });
-
-    return slugCreated;
   } catch (error) {
-    console.error(error)
+    console.error(error);
 
     throw new TRPCError({
       code: "INTERNAL_SERVER_ERROR",
@@ -59,7 +45,16 @@ export async function createShortLink(input: { slug: string | null; url: string;
   }
 }
 
-function generateRandomSlug(length: number) {
+async function generateSlug() {
+  do {
+    const slug = randomSlug(5);
+    const found = await getUrl(slug, false);
+
+    if (!found) return slug;
+  } while (true);
+}
+
+function randomSlug(length: number) {
   const chars = [];
 
   for (let i = 0; i < length; i++) {

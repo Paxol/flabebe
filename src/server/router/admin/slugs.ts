@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { createProtectedRouter } from "../protected-router";
-import { createShortLink } from "../../../utils/createShortLink";
+import { createShortLink } from "../../actions/createShortLink";
 
 export const adminSlugRouter = createProtectedRouter()
   .mutation("create", {

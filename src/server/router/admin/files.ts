@@ -4,7 +4,7 @@ import { createProtectedRouter } from "../protected-router";
 
 import AWS from 'aws-sdk';
 import { env } from "../../../env/server.mjs";
-import { createShortLink } from "../../../utils/createShortLink";
+import { createShortLink } from "../../actions/createShortLink";
 
 export const adminFileRouter = createProtectedRouter()
 	.mutation("get-upload-url", {

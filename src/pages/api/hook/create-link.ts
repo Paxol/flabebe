@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { env } from "../../../env/server.mjs";
-import { createShortLink } from "../../../utils/createShortLink";
+import { createShortLink } from "../../../server/actions/createShortLink";
 
 import { prisma } from "../../../server/db/client";
 
