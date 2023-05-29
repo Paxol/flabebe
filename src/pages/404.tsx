@@ -8,10 +8,8 @@ export default function FourOhFour() {
 
 		<h2 className="text-2xl my-8">The requested link does not exists or is expired</h2>
 
-		<Link href="/">
-			<a className="text-lg text-red-500">
+		<Link href="/" className="text-lg text-red-500">
 				Go back home
-			</a>
 		</Link>
 	</main>
 }

@@ -8,6 +8,7 @@ import "../styles/globals.css";
 
 const MyApp: AppType = ({
   Component,
+  // @ts-expect-error next auth session
   pageProps: { session, ...pageProps },
 }) => {
   return (

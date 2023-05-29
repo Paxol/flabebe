@@ -24,5 +24,5 @@ export async function middleware(req: NextRequest, ev: NextFetchEvent) {
 }
 
 export const config = {
-  matcher: "/:slug",
+  matcher: "/:slug+",
 };
